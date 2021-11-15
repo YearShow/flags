@@ -4,7 +4,7 @@ const Wrapper = styled.article`
     border-radius: var(--radii);
     background-color: var(--colors-ui-base);
     box-shadow: var(--shadow);
-    cursor: poinrer;
+    cursor: pointer;
     overflow: hidden;
 `;
 
@@ -43,7 +43,7 @@ const CardListItem = styled.li`
     }
 `;
 
-export const Card = ({ img, name, info, onClick }) => {
+export const Card = ({ img, name, info = [], onClick }) => {
     return (
         <Wrapper onClick={onClick}>
             <CardImage src={img} alt={name} />
