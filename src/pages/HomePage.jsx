@@ -8,7 +8,7 @@ import { Card } from '../components/Card';
 import { Controls } from '../components/Controls';
 
 
-export const HomePage = ({ countries, setCountries }) => {
+export const HomePage = ({ setCountries, countries }) => {
     const [filteredCountries, setFilteredCountries] = useState(countries);
 
     const { push } = useHistory();
@@ -21,7 +21,7 @@ export const HomePage = ({ countries, setCountries }) => {
         }
 
         if (search) {
-            data = data.filter(c => c.name.toLowerCase().includes(search.toLowerCase()))
+            data = data.filter(c => c.name.toLowerCase().includes(search.toLowerCase()));
         }
 
         setFilteredCountries(data);
@@ -31,6 +31,10 @@ export const HomePage = ({ countries, setCountries }) => {
         if (!countries.length)
             axios.get(ALL_COUNTRIES).then(({ data }) => setCountries(data));
     }, []);
+
+    useEffect(() => {
+        handleSearch();
+    }, [countries]);
 
     return (
         <>
@@ -44,7 +48,7 @@ export const HomePage = ({ countries, setCountries }) => {
                         info: [
                             {
                                 title: 'Population',
-                                description: c.population.toString()
+                                description: c.population.toLocaleString()
                             },
                             {
                                 title: 'Region',

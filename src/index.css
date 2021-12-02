@@ -41,4 +41,5 @@ body {
     color: var(--colors-text);
     font-weight: var(--fw-light);
     background-color: var(--colors-bg);
+    transition: all 0.5s ease;
 }
