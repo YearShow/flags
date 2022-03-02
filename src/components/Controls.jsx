@@ -23,7 +23,7 @@ const Wrapper = styled.div`
     }
 `
 
-export const Controls = ({ onSearch }) => {
+export const Controls = () => {
 
 	return (
 		<Wrapper>
