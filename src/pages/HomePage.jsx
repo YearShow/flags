@@ -1,15 +1,19 @@
+import { useNavigate } from 'react-router-dom';
+
 import { List } from '../components/List';
 import { Card } from '../components/Card';
 import { Controls } from '../components/Controls';
 
+export const HomePage = () => {
+	const navigate = useNavigate();
 
-export const HomePage = ({ setCountries, countries }) => {
+	const countries = [];
 
 	return (
 		<>
 			<Controls />
 			<List>
-				{countries.map(c => {
+				{countries.map((c) => {
 
 					const countryInfo = {
 						img: c.flags.png,
@@ -30,10 +34,14 @@ export const HomePage = ({ setCountries, countries }) => {
 						]
 					};
 					return (
-						<Card key={c.name} onClick={() => push(`/country/${c.name}`)} {...countryInfo} />
-					)
+						<Card
+							key={c.name}
+							onClick={() => navigate(`/country/${c.name}`)}
+							{...countryInfo}
+						/>
+					);
 				})}
 			</List>
 		</>
-	)
-}
+	);
+};
