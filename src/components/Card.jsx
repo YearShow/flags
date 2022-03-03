@@ -4,8 +4,12 @@ const Wrapper = styled.article`
     border-radius: var(--radii);
     background-color: var(--colors-ui-base);
     box-shadow: var(--shadow);
-    cursor: pointer;
     overflow: hidden;
+    cursor: pointer;
+	&:hover {
+		transform: translateY(-0.75rem)
+	}
+	transition: all .2s ease;
 `;
 
 const CardImage = styled.img`
@@ -44,19 +48,19 @@ const CardListItem = styled.li`
 `;
 
 export const Card = ({ img, name, info = [], onClick }) => {
-    return (
-        <Wrapper onClick={onClick}>
-            <CardImage src={img} alt={name} />
-            <CardBody>
-                <CardTitle>{name}</CardTitle>
-                <CardList>
-                    {info.map(el => (
-                        <CardListItem key={el.title}>
-                            <b>{el.title}: </b>{el.description}
-                        </CardListItem>
-                    ))}
-                </CardList>
-            </CardBody>
-        </Wrapper>
-    );
+	return (
+		<Wrapper onClick={onClick}>
+			<CardImage src={img} alt={name} />
+			<CardBody>
+				<CardTitle>{name}</CardTitle>
+				<CardList>
+					{info.map(el => (
+						<CardListItem key={el.title}>
+							<b>{el.title}: </b>{el.description}
+						</CardListItem>
+					))}
+				</CardList>
+			</CardBody>
+		</Wrapper>
+	);
 };
