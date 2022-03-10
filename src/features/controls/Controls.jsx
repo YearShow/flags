@@ -1,7 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { selectRegion, setRegion } from './controls-slice';
 import { CustomSelect } from './CustomSelect';
 import { Search } from './Search';
 import { useRegion } from './use-region';
