@@ -1,9 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { filterByCode } from './../../config';
 
 export const loadCountryByName = createAsyncThunk(
 	'@@details/load-country-by-name',
 	(name, { extra: { client, api } }) => {
 		return client.get(api.searchByCountry(name));
+	}
+);
+
+export const loadNeighborsByBorder = createAsyncThunk(
+	'@@details/load-neighbors',
+	(borders, { extra: { client, api } }) => {
+		return client.get(api.filterByCode(borders));
 	}
 );
 
@@ -33,6 +41,9 @@ const detailsSlice = createSlice({
 			.addCase(loadCountryByName.fulfilled, (state, action) => {
 				state.status = 'idle';
 				state.currentCountry = action.payload.data[0];
+			})
+			.addCase(loadNeighborsByBorder.fulfilled, (state, action) => {
+				state.neighbors = action.payload.data.map(country => country.name);
 			})
 	}
 });
